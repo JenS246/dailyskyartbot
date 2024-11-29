@@ -14,6 +14,12 @@ const agent = new BskyAgent({
 
 const MAX_POST_LENGTH = 300;
 
+interface Book {
+  title: string;
+  author: string;
+  link: string;
+}
+
 export async function getRandomBook() {
   try {
     const filePath = path.join(
@@ -42,7 +48,7 @@ export async function getRandomBook() {
   }
 }
 
-export async function getBookContent(book: any) {
+export async function getBookContent(book: Book) {
   try {
     const response = await fetch(book.link);
     if (!response.ok) {
@@ -82,7 +88,7 @@ export async function generateQuote(bookContent: string) {
   }
 }
 
-export async function postToBluesky(quote: string, book: any) {
+export async function postToBluesky(quote: string, book: Book) {
   try {
     await agent.login({
       identifier: process.env.BLUESKY_USERNAME!,
@@ -91,7 +97,7 @@ export async function postToBluesky(quote: string, book: any) {
 
     // Truncate title if needed to fit within limits
     let title = book.title;
-    let author = book.author;
+    const author = book.author;
     let post = `"${quote}"\n—${author}, "${title}"`;
 
     // If post is too long, truncate the title
