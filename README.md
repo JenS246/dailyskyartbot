@@ -1,43 +1,48 @@
-# Suffragist Quote Bot
+# SkyArtBot
 
-A Next.js application that generates and posts meaningful quotes from suffragist authors to Bluesky.
+A whimsical Bluesky bot that generates and posts artistic sky scenes using emojis. Each post creates a unique, randomized sky scene with various elements like weather, flying creatures, celestial objects, and more.
 
 ## Setup
 
 1. Clone the repository
 2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Copy `.env.example` to `.env` and fill in your Bluesky credentials:
+   ```
+   BLUESKY_USERNAME=your_username
+   BLUESKY_PASSWORD=your_password
+   ```
 
-```bash
-npm install
-```
-
-3. Copy `.env.example` to `.env` and fill in your credentials:
-
-```bash
-cp .env.example .env
-```
-
-Required credentials:
-
-- `BLUESKY_USERNAME`: Your Bluesky handle (e.g., username.bsky.social)
-- `BLUESKY_PASSWORD`: Your Bluesky password
-- `GEMINI_API_KEY`: Your Google Gemini API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
-
-4. Run the development server:
+## Development
 
 ```bash
 npm run dev
 ```
 
-5. Visit `http://localhost:3000/generate` to generate and post quotes
+## Deployment
+
+1. Build the project:
+   ```bash
+   npm run build
+   ```
+
+2. Start the server:
+   ```bash
+   npm start
+   ```
+
+3. Set up a cron job to hit the `/api/skyart` endpoint at your desired interval.
 
 ## Features
 
-- Randomly selects books from suffragist authors
-- Generates meaningful quotes using Google's Gemini AI
-- Posts formatted quotes to Bluesky
-- Beautiful UI for manual quote generation
-
-## Security Note
-
-Never commit your `.env` file or expose your credentials. The `.env` file is listed in `.gitignore` to prevent accidental commits.
+- Generates random sky scenes using emojis
+- Alternates between day and night themes
+- Includes various elements:
+  - Weather phenomena
+  - Flying creatures
+  - Vehicles
+  - Celestial objects
+  - Decorative elements
+- Adds whimsical messages to each post
